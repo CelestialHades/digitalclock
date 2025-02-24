@@ -27,6 +27,11 @@ function updateClock() {
   let minutes = now.getMinutes();
   let seconds = now.getSeconds();
   
+
+  //4.5 Determine AM/PM and convert to 12-hour format.
+  const period = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12 || 12; // convert 0-23 to 1-2  // % 12 is the modulo operator, giving the remainder 
+
 /* 
 * this is a ternary operator (a concise if-else). if hours < 10 is true , it add a leading zero, e.g,
 * 5 becomes '05' otherwise, it keeps hours as is.
@@ -43,7 +48,7 @@ function updateClock() {
 * ${} embeds the variables directly into the string - super handy!
 */
   // 6. Format the time string
-  const timeString = `${hours}:${minutes}:${seconds}`;
+  const timeString = `${hours}:${minutes}:${seconds} ${period}`;
 
 /* 
 * sets the text inside the <div> id="clock" our timeString.
